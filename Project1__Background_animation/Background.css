@@ -1,11 +1,12 @@
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     background-color: azure;
     cursor: grabbing;
 }
-.container{
+
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,7 +16,7 @@
     overflow: hidden;
 }
 
-.container span{
+.container span {
     position: relative;
     display: flex;
     justify-content: center;
@@ -24,10 +25,10 @@
     min-width: 20px;
 }
 
-.container span ::before{
+.container span::before {
     content: "";
     position: absolute;
-    background: url(https://cdn.pixabay.com/photo/2024/06/25/21/08/train-8853636_1280.jpg);
+    background: url(https://cdn.pixabay.com/photo/2023/07/02/19/58/chamomile-8102907_1280.jpg);
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
@@ -38,7 +39,7 @@
     height: 100%;
 }
 
-.container span ::hover{
+.container span:hover::before {
     transition: 0s;
     opacity: 1;
     width: 1000%;
