@@ -5,15 +5,18 @@ document.getElementById("generateButton").addEventListener("click", () => {
     // Clear previous letters
     lettersContainer.innerHTML = '';
 
-    // Create spans for each letter in the input
+    // Create spans for each character in the input, including spaces
     for (const letter of input) {
-        if (letter) { // Only create spans for non-empty characters
-            const span = document.createElement("span");
-            span.textContent = letter;
-            span.addEventListener("click", (e) => {
-                e.target.classList.add("active");
-            });
-            lettersContainer.appendChild(span);
-        }
+        const span = document.createElement("span");
+        span.textContent = letter === ' ' ? '\u00A0' : letter; // Use non-breaking space for better spacing
+        lettersContainer.appendChild(span);
     }
+
+    // Trigger automatic jumping animation
+    const spans = lettersContainer.querySelectorAll("span");
+    spans.forEach((span, index) => {
+        setTimeout(() => {
+            span.classList.add("active");
+        }, index * 500); // Delay each letter's animation by 500ms
+    });
 });
