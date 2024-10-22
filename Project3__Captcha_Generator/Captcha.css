@@ -1,11 +1,11 @@
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: 'Arial', sans-serif;
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -15,85 +15,96 @@ body{
     animation: colorChange 10s infinite alternate;
 }
 
-
-@keyframes colorChange{
-    0%{
+@keyframes colorChange {
+    0% {
         background-color: #e0c3fc;
     }
-    100%{
+    100% {
         background-color: #c3e8fc;
     }
 }
 
-.container{
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.9);
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0px 0px rgba(0, 0, 0, 0.2);
-    width: 50%;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    width: 300px; /* Fixed width for consistency */
 }
 
-h2{
-    font-size: 2.5rem;
+h2 {
+    font-size: 1.8rem;
     text-align: center;
     color: #4a90e2;
-    text-shadow: 2px 2px 4px #ccc;
+    text-shadow: 1px 1px 2px #ccc;
     margin-bottom: 20px;
 }
 
-div{
-    margin: 0.5rem;
-    font-size: 1.5rem;
-    padding: 0.8rem;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s, tra;
-}
-button:hover{
-    background: #ff6541;
-    transform: scale(1.1);
+.generator-box {
+    width: 100%;
+    margin-bottom: 20px;
 }
 
-.generator{
-    font-size: 2rem;
+.generator {
+    font-size: 1.5rem;
     padding: 1rem;
     background: #3a3a3a;
     color: #fff;
     text-align: center;
     border-radius: 5px;
-    width: 150px;
+    border: none;
+    width: 100%;
     box-shadow: 2px 2px 4px #444;
 }
 
-.client-text{
+.client-text {
     text-align: center;
     width: 100%;
     padding: 0.8rem;
-    font-size: 1.5rem;
-    border: none;
+    font-size: 1rem;
+    border: 1px solid #ccc;
     border-radius: 5px;
     background: #96e6a1;
 }
 
-.submit{
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+button {
     background-color: #5e5e5e;
     color: whitesmoke;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    width: 48%; /* Makes buttons equal in size */
 }
 
-.submit:hover{
-    background: #828282;
+button:hover {
+    background: #ff6541;
+    transform: scale(1.05);
 }
 
-.refresh{
-    background: #5e5e5e;
-    color: whitesmoke;
+.submit {
+    background-color: #4CAF50; /* Green */
 }
 
-.refresh:hover{
-    background-color: #e0e0e0;
-    
+.submit:hover {
+    background: #45a049;
+}
+
+.refresh {
+    background-color: #f44336; /* Red */
+}
+
+.refresh:hover {
+    background: #e53935;
 }
