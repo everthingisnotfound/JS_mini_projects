@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Captcha Generator</title>
+    <title>Enhanced Captcha Generator</title>
     <link rel="stylesheet" href="Captcha.css">
 </head>
 
@@ -21,7 +21,15 @@
             <button class="submit" id="submit" type="button">Submit</button>
             <button class="refresh" id="refresh" type="button">Refresh</button>
         </div>
+        <div class="additional-buttons">
+            <button id="audioCaptcha" class="audio-button">🔊 Play Audio</button>
+            <button id="toggleTheme" class="theme-toggle">🌙 Dark Mode</button>
+        </div>
     </div>
+
+    <!-- Success and Failure Audio -->
+    <audio id="successAudio" src="congratulations-deep-voice-172193.mp3"></audio>
+    <audio id="failureAudio" src="aww-8277.mp3"></audio>
 
     <script src="Captcha.js"></script>
 </body>

@@ -4,50 +4,62 @@ const submit = document.getElementById("submit");
 const refresh = document.getElementById("refresh");
 const generator = document.getElementById("generator");
 const clientText = document.getElementById("client-text");
+const audioCaptcha = document.getElementById("audioCaptcha");
+const toggleTheme = document.getElementById("toggleTheme");
 
-const char = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"; // Allowed characters for captcha
+const successAudio = document.getElementById("successAudio");
+const failureAudio = document.getElementById("failureAudio");
+
+const char = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 let captcha = "";
 
+// Generate Captcha
 function generateCaptcha() {
     const captchaLength = 6;
-    captcha = ""; // Reset captcha each time
+    captcha = "";
 
     for (let i = 0; i < captchaLength; i++) {
         const randomIndex = Math.floor(Math.random() * char.length);
-        captcha += char[randomIndex]; // Create random captcha
+        
+        captcha += char[randomIndex];
     }
-    generator.value = captcha; // Set the generated captcha in the input field
-    display.innerText = "Captcha Generator"; // Reset display message
-    body.style.backgroundColor = ""; // Reset background color on new captcha
-    clientText.value = ""; // Clear the client text input field
+    generator.value = captcha;
+    display.innerText = "Captcha Generator";
+    clientText.value = "";
 }
 
-// Generate captcha on page load
-body.onload = generateCaptcha;
-
-submit.onclick = function checkInput() {
-    const input = clientText.value.trim(); // Trim input to avoid leading/trailing spaces
-    console.log(`User Input: "${input}", Captcha: "${captcha}"`); // Log input and captcha
+// Check Captcha
+submit.onclick = function () {
+    const input = clientText.value.trim();
 
     if (input === "") {
         display.innerText = "👇 Please Enter the text shown Below 👇";
-        body.style.backgroundColor = ""; // Reset background color
     } else if (input === captcha) {
         display.innerText = "👍 Correct! You have passed the Captcha Test!";
-        body.style.backgroundColor = ""; // Reset background color for correct input
+        successAudio.play(); // Play success audio
     } else {
         display.innerText = "🚫 Incorrect! Try again!";
-        body.style.backgroundColor = "red"; // Change background color to red for incorrect input
-        console.log("Background color changed to red."); // Log background change
-
-        // Reset background color after 2 seconds
-        setTimeout(() => {
-            body.style.backgroundColor = ""; // Reset after 2 seconds
-        }, 2000);
+        failureAudio.play(); // Play failure audio
     }
 };
 
-refresh.onclick = function refreshCaptcha() {
-    generateCaptcha(); // Call the function to regenerate captcha
-    clientText.value = ""; // Clear the client text input field on refresh
+// Refresh Captcha
+refresh.onclick = generateCaptcha;
+
+// Play Audio CAPTCHA
+audioCaptcha.onclick = function () {
+    const audio = new SpeechSynthesisUtterance(captcha);
+    audio.rate = 0.8; // Slow down the speech
+    window.speechSynthesis.speak(audio);
 };
+
+// Toggle Dark Mode
+toggleTheme.onclick = function () {
+    body.classList.toggle("dark");
+    toggleTheme.innerText = body.classList.contains("dark")
+        ? "☀️ Light Mode"
+        : "🌙 Dark Mode";
+};
+
+// Initialize on load
+body.onload = generateCaptcha;
